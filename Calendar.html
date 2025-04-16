@@ -14,7 +14,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>References</title>
+    <title>Calendar</title>
 
     <!-- slider stylesheet -->
     <!-- slider stylesheet -->
@@ -33,6 +33,18 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+
+    <!-- FullCalendar CSS -->
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+    <!-- rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
+    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.17/index.global.min.js'></script>
+
+
   </head>
 
   <body class="sub_page">
@@ -95,11 +107,18 @@
  <!-- Schedule Section -->
    <h2 class="text-center">6-Week Schedule</h2>
 
+   <h6 class="text-center"><a href="https://docs.google.com/spreadsheets/d/19v6OqWSJqKWzPWf_5LN59qUcpMYurZ_tII7rZk3kVZ4/edit?gid=0#gid=0" target="_blank"> Click for google sheets version</a></h6>
+
    <!-- 6-Week Schedule Grid -->
    <div class="calendar-wrapper">
     <div id="calendar"></div>
   </div>
-  
+
+  <!-- Monthly calendar goes here -->
+  <div class="calendar-wrapper">
+    <div id="fullcalendar-container" style="margin-top: 50px;"></div>
+  </div>
+
 
  <!-- Bootstrap JS and jQuery -->
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -107,7 +126,7 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
  <!-- Custom Script for Event Details -->
- <script src="js/calendar.js"></script>
+ <script src="js/calendarFinanzas.js"></script>
 <!-- End Work Section-->
 
 
