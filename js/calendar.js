@@ -1,20 +1,3 @@
-// let events = [
-//     // Monday       Tuesday     Wednesday       Thursday    Friday          Saturday        Sunday
-//     // week 1 
-//     'References', 'References', 'References', 'References', 'References', ['References', 'Office Meeting'], 'References',
-//     // week 2 
-//     'References', 'References', 'References', 'References', 'References', 'References', ['References', 'Sunday Devotional'],
-//     // week 3 
-//     'References', 'References', 'References', 'References', 'References', ['References', 'Office Meeting'], 'References',
-//     // week 4
-//     'References', 'References', 'References', 'References', ['References', 'New Missionary Training'], 'References', 'References',
-//     // week 5
-//     'References', 'References', 'References', 'References', 'References', ['References', 'Office Meeting'], ['References', 'Sunday Devotional'],
-//     // week 6
-//     'References', 'References', ['References', 'Greenie Day'], ['References', 'Transfers'], 'References', 'References', 'References',
-// ]
-
-
 // // Function to show event details in a modal
 function showEvent(eventDate) {
     const eventDetails = "This is a test to see how well this thing works. dique it will work " + eventDate//events[eventDate - 1];
@@ -86,6 +69,33 @@ const calendarData = [
   ],
 ];
 
+
+const monthCalendarData = [
+  {
+    title: 'MLC in person',
+    rrule: "FREQ=MONTHLY;BYDAY=1TU"
+  },
+  {
+    title: 'Get reports for stake presidents ready',
+    rrule: "FREQ=MONTHLY;BYMONTHDAY=10",
+    color: '#FF0000'
+  },
+  {
+    title: 'Meeting with Jafanny',
+    rrule: {
+      freq: 'monthly',
+      byweekday: ['th'],
+      bysetpos: -1, // last Thursday
+      dtstart: '2025-04-01T11:30:00' // can be the first valid month; only time is used here
+    },
+    color: '#000000'
+  },
+  {
+    title: 'Videos for social media are due',
+    rrule: "FREQ=MONTHLY;BYMONTHDAY=20",
+    color: '#FF00FF'
+  },
+];
 
 function renderCalendar() {
   const calendar = document.getElementById('calendar');
@@ -159,79 +169,19 @@ function renderCalendar() {
   calendar.appendChild(grid);
 }
   
+function renderMonthlyCalendar() {
+  const calendarEl = document.getElementById('fullcalendar-container');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+        height: 'auto',
+        events: monthCalendarData,
+    });
+
+    calendar.render();
+}
+
+
 document.addEventListener("DOMContentLoaded", renderCalendar);
+document.addEventListener("DOMContentLoaded", renderMonthlyCalendar);
   
-
-  /*
-     <div class="schedule-container">
-     <!-- header -->
-    <div class="week-label"></div>
-    <div class="week-label">Monday</div>
-    <div class="week-label">Tuesday</div>
-    <div class="week-label">Wednesday</div>
-    <div class="week-label">Thursday</div>
-    <div class="week-label">Friday</div>
-    <div class="week-label">Saturday</div>
-    <div class="week-label">Sunday</div>
-
-     <!-- Week 1 -->
-     <div class="week-label">Week 1</div>
-     <div class="day-box" onclick="showEvent(1)">1</div>
-     <div class="day-box" onclick="showEvent(1)">2</div>
-     <div class="day-box" onclick="showEvent(3)">3</div>
-     <div class="day-box" onclick="showEvent(4)">4</div>
-     <div class="day-box" onclick="showEvent(5)">5</div>
-     <div class="day-box" onclick="showEvent(6)">6</div>
-     <div class="day-box" onclick="showEvent(7)">7</div>
-
-     <!-- Repeat for Weeks 2 to 6 -->
-     <div class="week-label">Week 2</div>
-     <div class="day-box" onclick="showEvent(8)">8</div>
-     <div class="day-box" onclick="showEvent(9)">9</div>
-     <div class="day-box" onclick="showEvent(10)">10</div>
-     <div class="day-box" onclick="showEvent(11)">11</div>
-     <div class="day-box" onclick="showEvent(12)">12</div>
-     <div class="day-box" onclick="showEvent(13)">13</div>
-     <div class="day-box" onclick="showEvent(14)">14</div>
-
-     <!-- Week 3 -->
-     <div class="week-label">Week 3</div>
-     <div class="day-box" onclick="showEvent(15)">15</div>
-     <div class="day-box" onclick="showEvent(16)">16</div>
-     <div class="day-box" onclick="showEvent(17)">17</div>
-     <div class="day-box" onclick="showEvent(18)">18</div>
-     <div class="day-box" onclick="showEvent(19)">19</div>
-     <div class="day-box" onclick="showEvent(20)">20</div>
-     <div class="day-box" onclick="showEvent(21)">21</div>
-     <!-- Week 4 -->
-     <div class="week-label">Week 4</div>
-     <div class="day-box" onclick="showEvent(22)">22</div>
-     <div class="day-box" onclick="showEvent(23)">23</div>
-     <div class="day-box" onclick="showEvent(24)">24</div>
-     <div class="day-box" onclick="showEvent(25)">25</div>
-     <div class="day-box" onclick="showEvent(26)">26</div>
-     <div class="day-box" onclick="showEvent(27)">27</div>
-     <div class="day-box" onclick="showEvent(28)">28</div>
-
-     <!-- Week 5 -->
-     <div class="week-label">Week 5</div>
-     <div class="day-box" onclick="showEvent(29)">29</div>
-     <div class="day-box" onclick="showEvent(30)">30</div>
-     <div class="day-box" onclick="showEvent(31)">31</div>
-     <div class="day-box" onclick="showEvent(32)">32</div>
-     <div class="day-box" onclick="showEvent(33)">33</div>
-     <div class="day-box" onclick="showEvent(34)">34</div>
-     <div class="day-box" onclick="showEvent(35)">35</div>
-     <!-- Week 6 -->
-     <div class="week-label">Week 6</div>
-     <div class="day-box" onclick="showEvent(36)">36</div>
-     <div class="day-box" onclick="showEvent(37)">37</div>
-     <div class="day-box" onclick="showEvent(38)">38</div>
-     <div class="day-box" onclick="showEvent(39)">39</div>
-     <div class="day-box" onclick="showEvent(40)">40</div>
-     <div class="day-box" onclick="showEvent(41)">41</div>
-     <div class="day-box" onclick="showEvent(42)">42</div>
-
-     <!-- Repeat for Week 3 to Week 6 as needed -->
-     <!-- Week 3, Week 4, Week 5, and Week 6 go here -->
-   </div>*/
